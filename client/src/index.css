@@ -78,7 +78,7 @@ img {
     font-size: var(--font-size);
     cursor: pointer;
 }
-.bench-header, .barbell-header, .squat-header {
+.bench-header, .barbell-header, .squat-header, .overhead-header, .chinups-header {
     display: flex;
     justify-content: space-between;
     padding: 20px;

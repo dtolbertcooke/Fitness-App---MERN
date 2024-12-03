@@ -56,6 +56,15 @@ const updateUser = async (req, res) => {
     if (req.body.name != null) {
         res.user.name = req.body.name
     }
+    if (req.body.age != null) {
+        res.user.age = req.body.age
+    }
+    if (req.body.feet != null) {
+        res.user.feet = req.body.feet
+    }
+    if (req.body.inches != null) {
+        res.user.inches = req.body.inches
+    }
     if (req.body.weight != null) {
         res.user.weight = req.body.weight
     }

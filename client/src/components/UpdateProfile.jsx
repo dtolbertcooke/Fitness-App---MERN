@@ -31,7 +31,6 @@ export default function UpdateProfile() {
 
         // Construct the body to update only the fields that have been modified
         const dataToUpdate = {};
-
         for (let key in formData) {
           if (formData[key]) {
             dataToUpdate[key] = formData[key];
