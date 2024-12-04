@@ -7,11 +7,11 @@ const WorkoutTracker = () => {
   const location = useLocation(); // Get the location object to access passed state
 
   // Get initial state or fallback to defaults if no state is passed
-  const [selectedTopOption] = useState(location.state?.selectedTopOption || 'Overhead Press');
-  const [selectedMidOption] = useState(location.state?.selectedMidOption || 'Chinups');
-  const [topStartWeight] = useState(location.state?.topStartWeight || 45);
-  const [midStartWeight] = useState(location.state?.midStartWeight || 45);
-  const [bottomStartWeight] = useState(location.state?.bottomStartWeight || 45);
+  const [overheadPress, setOverheadPress] = useState(location.state?.overheadPress || 45);
+  const [benchPress, setBenchPress] = useState(location.state?.benchPress || 45);
+  const [chinups, setChinups] = useState(location.state?.chinups || 45);
+  const [barbellRows, setBarbellRows] = useState(location.state?.barbellRows || 45);
+  const [squats, setSquats] = useState(location.state?.squats || 45);
 
   // Initialize button values (all set to 5)
   const [buttonValues, setButtonValues] = useState(Array(9).fill(5));
@@ -23,15 +23,23 @@ const WorkoutTracker = () => {
   const [time, setTime] = useState(0);
 
   // State to track the selected workout option from dropdown
-  const [selectedWorkout, setSelectedWorkout] = useState('Workout A');
+  const [selectedWorkout, setSelectedWorkout] = useState(location.state?.selectedWorkout || "Workout A");
 
   useEffect(() => {
+    if (location.state) {
+      setOverheadPress(location.state.overheadPress || 45);
+      setBenchPress(location.state.benchPress || 45);
+      setChinups(location.state.chinups || 45);
+      setBarbellRows(location.state.barbellRows || 45);
+      setSquats(location.state.squats || 45);
+      setSelectedWorkout(location.state.selectedWorkout || "Workout A");
+    }
     let interval;
     if (isRunning) {
       interval = setInterval(() => setTime((prevTime) => prevTime + 1), 10);
     }
     return () => clearInterval(interval);
-  }, [isRunning]);
+  }, [location.state, isRunning]);
 
   const minutes = Math.floor((time % 360000) / 6000);
   const seconds = Math.floor((time % 6000) / 100);
@@ -68,9 +76,12 @@ const WorkoutTracker = () => {
   const editWorkout = () => {
     navigate('/edit', {
       state: {
-        topStartWeight,
-        midStartWeight,
-        bottomStartWeight,
+        overheadPress,
+        benchPress,
+        chinups,
+        barbellRows,
+        squats,
+        selectedWorkout
       },
     });
   };
@@ -104,7 +115,7 @@ const WorkoutTracker = () => {
               <div className="overhead-header">
                 <label className="overhead-label">Overhead Press</label>
                 <label onClick={editWorkout}>
-                  3 x 5 {topStartWeight}lb
+                  3 x 5 {overheadPress}lb
                   <button style={{ color: 'red' }} onClick={editWorkout}>
                     {'>'}
                   </button>
@@ -127,7 +138,7 @@ const WorkoutTracker = () => {
               <div className="chinups-header">
                 <label className="chinups-label">Chinups</label>
                 <label onClick={editWorkout}>
-                  3 x 5 {midStartWeight}lb
+                  3 x 5 {chinups}lb
                   <button style={{ color: 'red' }} onClick={editWorkout}>
                     {'>'}
                   </button>
@@ -150,7 +161,7 @@ const WorkoutTracker = () => {
               <div className="squat-header">
                 <h2>Squat</h2>
                 <label onClick={editWorkout}>
-                  3 x 5 {bottomStartWeight}lb
+                  3 x 5 {squats}lb
                   <button style={{ color: 'red' }} onClick={editWorkout}>
                     {'>'}
                   </button>
@@ -186,7 +197,7 @@ const WorkoutTracker = () => {
               <div className="bench-header">
                 <label className="bench-label">Bench Press</label>
                 <label onClick={editWorkout}>
-                  3 x 5 {topStartWeight}lb
+                  3 x 5 {benchPress}lb
                   <button style={{ color: 'red' }} onClick={editWorkout}>
                     {'>'}
                   </button>
@@ -209,7 +220,7 @@ const WorkoutTracker = () => {
               <div className="barbell-header">
                 <label className="barbell-label">Barbell Rows</label>
                 <label onClick={editWorkout}>
-                  3 x 5 {midStartWeight}lb
+                  3 x 5 {barbellRows}lb
                   <button style={{ color: 'red' }} onClick={editWorkout}>
                     {'>'}
                   </button>
@@ -232,7 +243,7 @@ const WorkoutTracker = () => {
               <div className="squat-header">
                 <h2>Squat</h2>
                 <label onClick={editWorkout}>
-                  3 x 5 {bottomStartWeight}lb
+                  3 x 5 {squats}lb
                   <button style={{ color: 'red' }} onClick={editWorkout}>
                     {'>'}
                   </button>

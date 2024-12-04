@@ -1,6 +1,6 @@
 # DougFitness
 
-A MERN stack fitness app based on Phraks Greyskull LP Variant.
+A MERN stack fitness app based on Phraks Greyskull LP Variant workout program.
 
 ## Table of Contents
 
@@ -11,9 +11,11 @@ A MERN stack fitness app based on Phraks Greyskull LP Variant.
 
 ## Description:
 
-This application is a workout tracker for a modified version of the Phraks Greyskull LP Variant program. By default, users with no profile can click the weight of each workout to change the workout itself as well as the current weight. The user can create a profile. Once user is signed up, profile users can track the weight per workout. By default, if the user completes the full set, add 2.5lb for upper body workout or add 5lb for lower body workout. If any set is not fully completed, no weight change.
+This application is a workout tracker for a modified version of the Phraks Greyskull LP Variant program.
 
-# PROGRAM HERE
+### PROGRAM
+
+![Program](./client/public/program.JPG)
 
 ## Technology:
 
@@ -31,3 +33,10 @@ Technologies utilized:
 To run locally, input in terminal:
 
 npm install
+
+## Usage
+
+- Choose between Workout A or B
+- Click weight to edit workout
+- Click '5' button to complete set (click again to lower reps)
+- Login to access user profile and save workout weights

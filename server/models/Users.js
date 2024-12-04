@@ -34,10 +34,30 @@ const userSchema = new mongoose.Schema({
         password: true,
         required: true,
     },
+    overheadPress: { 
+      type: Number, 
+      default: 45 
+    },
+    benchPress: { 
+      type: Number, 
+      default: 45 
+    },
+    chinups: { 
+      type: Number, 
+      default: 45 
+    },
+    barbellRows: { 
+      type: Number, 
+      default: 45 
+    },
+    squats: { 
+      type: Number, 
+      default: 45 
+    },
   });
 
   // static signup method
-  userSchema.statics.signup = async function (name, age, feet, inches, weight, email, password) {
+  userSchema.statics.signup = async function (name, age, feet, inches, weight, email, password, overheadPress, benchPress, chinups, barbellRows, squats) {
     
     // validation
     if (!name || !email || !password) {
@@ -59,7 +79,7 @@ const userSchema = new mongoose.Schema({
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password, salt)
     
-    const user = await this.create({ name, age, feet, inches, weight, email, password: hash })
+    const user = await this.create({ name, age, feet, inches, weight, email, password: hash, overheadPress, benchPress, chinups, barbellRows, squats })
     return user
   }
 
