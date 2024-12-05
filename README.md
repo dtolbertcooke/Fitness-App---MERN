@@ -1,4 +1,4 @@
-# DougFitness
+# DougFitness (in progress....)
 
 A MERN stack fitness app based on Phraks Greyskull LP Variant workout program.
 
