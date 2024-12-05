@@ -5,9 +5,8 @@ import { useState } from "react";
 
 export default function EditWorkout() {
 
-    // const token = localStorage.getItem("token")
-    // const id = localStorage.getItem("id")
-    // const [user, setUser] = useState([])
+    const token = localStorage.getItem("token")
+    const id = localStorage.getItem("id")
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -20,8 +19,33 @@ export default function EditWorkout() {
     const [barbellRowsWeight, setBarbellRowsWeight] = useState(barbellRows)
     const [squatsWeight, setSquatsWeight] = useState(squats)
     
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+
+        try {
+          const response = await fetch(`http://localhost:5050/users/${id}/workouts`, {
+            method: 'PATCH',
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              overheadPress: overheadPressWeight,
+              benchPress: benchPressWeight,
+              chinups: chinupsWeight,
+              barbellRows: barbellRowsWeight,
+              squats: squatsWeight,})
+          })
+
+          if (!response.ok) {
+            throw new Error("Failed to update weight(s)");
+          }
+
+          const result = await response.json()
+          console.log(result)
+        } catch (error) {
+          console.error("Error updating weight(s): ", error)
+        } finally {
         // Pass the updated values back to WorkoutTracker.jsx
         navigate('/', {
           state: { overheadPress: overheadPressWeight,
@@ -30,7 +54,8 @@ export default function EditWorkout() {
             barbellRows: barbellRowsWeight,
             squats: squatsWeight,
             selectedWorkout}
-        });
+        })
+      }
       };
 
     return (

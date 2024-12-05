@@ -109,6 +109,47 @@ const loginUser = async (req, res) => {
     }
 }
 
+const getWorkouts = async (req, res) => {
+    try {
+        const email = req.user.email
+        const user = await Users.findOne({ email })
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const { overheadPress, benchPress, chinups, barbellRows, squats } = user.workouts
+        res.json({ overheadPress, benchPress, chinups, barbellRows, squats });
+    } catch (err) {
+        res.statusCode(500).json({ message: 'Error fetching workouts',err })
+    }
+}
+
+const updateWorkouts = async (req, res) => {
+
+    if (req.body.overheadPress != null) {
+        res.user.workouts.overheadPress = req.body.overheadPress
+    }
+    if (req.body.benchPress != null) {
+        res.user.workouts.benchPress = req.body.benchPress
+    }
+    if (req.body.chinups != null) {
+        res.user.workouts.chinups = req.body.chinups
+    }
+    if (req.body.barbellRows != null) {
+        res.user.workouts.barbellRows = req.body.barbellRows
+    }
+    if (req.body.squats != null) {
+        res.user.workouts.squats = req.body.squats
+    }
+    try {
+        const updatedWorkouts = await res.user.save()
+        res.json(updatedWorkouts);
+    } catch (err) {
+        res.status(400).json({ message: err.message })
+    }
+}
+
 export default { 
     getUserById,
     getAllUsers, 
@@ -116,5 +157,7 @@ export default {
     signUpUser, 
     updateUser, 
     deleteUser, 
-    loginUser 
+    loginUser,
+    getWorkouts,
+    updateWorkouts
 };

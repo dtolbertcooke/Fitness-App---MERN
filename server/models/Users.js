@@ -34,26 +34,28 @@ const userSchema = new mongoose.Schema({
         password: true,
         required: true,
     },
-    overheadPress: { 
-      type: Number, 
-      default: 45 
-    },
-    benchPress: { 
-      type: Number, 
-      default: 45 
-    },
-    chinups: { 
-      type: Number, 
-      default: 45 
-    },
-    barbellRows: { 
-      type: Number, 
-      default: 45 
-    },
-    squats: { 
-      type: Number, 
-      default: 45 
-    },
+    workouts: {
+      overheadPress: { 
+        type: Number, 
+        default: 45 
+      },
+      benchPress: { 
+        type: Number, 
+        default: 45 
+      },
+      chinups: { 
+        type: Number, 
+        default: 45 
+      },
+      barbellRows: { 
+        type: Number, 
+        default: 45 
+      },
+      squats: { 
+        type: Number, 
+        default: 45 
+      },
+  }
   });
 
   // static signup method

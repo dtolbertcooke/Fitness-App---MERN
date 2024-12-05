@@ -16,7 +16,10 @@ const router = express.Router();
 router.use(cors());
 
 // get(READ) all users
-router.get('/', authToken, userController.getAllUsers)
+router.get('/', authToken, userController.getAllUsers) // replace authToken with admin authorization
+
+// GET ALL workouts for ONE user by id
+router.get('/:id/workouts',authToken, userController.getWorkouts)
 
 // CREATE(signup) user 
 router.post('/signup', userController.signUpUser)
@@ -31,5 +34,12 @@ router.route("/:id")
 .patch(authToken, userController.getUserById, userController.updateUser)
 // DELETE ONE user by
 .delete(authToken, userController.getUserById, userController.deleteUser)
+
+
+router.route("/:id/workouts")
+// GET ALL workouts for ONE user by id
+.get(authToken, userController.getWorkouts)
+// UPDATE ALL workouts for ONE user by id
+.patch(authToken, userController.getUserById, userController.updateWorkouts)
 
 export default router;

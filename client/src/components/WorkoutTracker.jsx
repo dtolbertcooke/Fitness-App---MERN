@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import '../index.css'
 
 const WorkoutTracker = () => {
+  const token = localStorage.getItem("token");
+  const id = localStorage.getItem("id");
   const navigate = useNavigate();
   const location = useLocation(); // Get the location object to access passed state
 
@@ -26,20 +28,61 @@ const WorkoutTracker = () => {
   const [selectedWorkout, setSelectedWorkout] = useState(location.state?.selectedWorkout || "Workout A");
 
   useEffect(() => {
-    if (location.state) {
-      setOverheadPress(location.state.overheadPress || 45);
-      setBenchPress(location.state.benchPress || 45);
-      setChinups(location.state.chinups || 45);
-      setBarbellRows(location.state.barbellRows || 45);
-      setSquats(location.state.squats || 45);
-      setSelectedWorkout(location.state.selectedWorkout || "Workout A");
+    const fetchUser = async () => {
+      try {
+        const response = await fetch(`http://localhost:5050/users/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        if (!response.ok) {
+          throw new Error("Failed to fetch user data");
+        }
+        const result = await response.json();
+        console.log(result.workouts);
+  
+        // Set state with the fetched data
+        if (result.workouts) {
+          setOverheadPress(result.workouts.overheadPress || 45);
+          setBenchPress(result.workouts.benchPress || 45);
+          setChinups(result.workouts.chinups || 45);
+          setBarbellRows(result.workouts.barbellRows || 45);
+          setSquats(result.workouts.squats || 45);
+          setSelectedWorkout(location.state?.selectedWorkout || "Workout A");
+        }
+      } catch (error) {
+        console.error(error);
+        // Navigate to login if fetch fails
+        navigate('/login');
+      }
+    };
+  
+    if (token && id) {
+      fetchUser();
+    } else {
+      navigate('/');
     }
+  
+    // Initialize workout state from location if available
+    if (!token || !id) {
+      if (location.state) {
+        setOverheadPress(location.state.overheadPress || 45);
+        setBenchPress(location.state.benchPress || 45);
+        setChinups(location.state.chinups || 45);
+        setBarbellRows(location.state.barbellRows || 45);
+        setSquats(location.state.squats || 45);
+        setSelectedWorkout(location.state.selectedWorkout || "Workout A");
+      }
+    }
+  
     let interval;
     if (isRunning) {
       interval = setInterval(() => setTime((prevTime) => prevTime + 1), 10);
     }
     return () => clearInterval(interval);
-  }, [location.state, isRunning]);
+  }, [location.state, isRunning, navigate, token, id]);
+  
 
   const minutes = Math.floor((time % 360000) / 6000);
   const seconds = Math.floor((time % 6000) / 100);
