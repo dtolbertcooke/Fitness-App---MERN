@@ -1,12 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
-// import Users from "./components/Users";
 import WorkoutTracker from "./components/WorkoutTracker";
 import Profile from "./components/Profile";
 import Login from "./components/Login";
@@ -37,7 +33,8 @@ const router = createBrowserRouter([
         element: <Login />,
       },
     ],
-  },{
+  },
+  {
     path: "/signup",
     element: <App />,
     children: [

@@ -1,95 +1,92 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import "../index.css"
+import { useNavigate } from "react-router-dom";
+import "../index.css";
 
 export default function UpdateProfile() {
-    
-    const token = localStorage.getItem("token");
-    const id = localStorage.getItem("id");
+  const token = localStorage.getItem("token");
+  const id = localStorage.getItem("id");
 
-    const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-      name: '',
-      age: '',
-      feet: '',
-      inches: '',
-      weight: '',
-      email: '',
-      password: ''
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: "",
+    age: "",
+    feet: "",
+    inches: "",
+    weight: "",
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (event) => {
+    const { id, value } = event.target;
+    setFormData({
+      ...formData,
+      [id]: value,
     });
+  };
 
-    const handleInputChange = (event) => {
-      const { id, value } = event.target;
-      setFormData({
-        ...formData,
-        [id]: value
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent page reload on form submit
+
+    // Construct the body to update only the fields that have been modified
+    const dataToUpdate = {};
+    for (let key in formData) {
+      if (formData[key]) {
+        dataToUpdate[key] = formData[key];
+      }
+    }
+
+    try {
+      const response = await fetch(`http://localhost:5050/users/${id}`, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataToUpdate), // Send only updated fields
       });
-    };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault(); // Prevent page reload on form submit
+      if (!response.ok) {
+        throw new Error("Failed to update profile");
+      }
 
-        // Construct the body to update only the fields that have been modified
-        const dataToUpdate = {};
-        for (let key in formData) {
-          if (formData[key]) {
-            dataToUpdate[key] = formData[key];
-          }
-        }
+      const result = await response.json();
+      console.log(result);
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    } finally {
+      // Clear the form and navigate back to the profile page
+      setFormData({
+        name: "",
+        age: "",
+        feet: "",
+        inches: "",
+        weight: "",
+        email: "",
+        password: "",
+      });
+      navigate("/profile");
+    }
+  };
 
-        try {
-          const response = await fetch(`http://localhost:5050/users/${id}`, {
-            method: 'PATCH',
-            headers: {
-                Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(dataToUpdate)  // Send only updated fields
-          });
-
-          if (!response.ok) {
-            throw new Error("Failed to update profile");
-          }
-
-          const result = await response.json();
-          console.log(result);
-
-        } catch (error) {
-          console.error("Error updating profile:", error);
-        } finally {
-          // Clear the form and navigate back to the profile page
-          setFormData({
-            name: '',
-            age: '',
-            feet: '',
-            inches: '',
-            weight: '',
-            email: '',
-            password: ''
-          });
-          navigate('/profile');
-        }
-    };
-
-    return (
+  return (
     <div className="form-container">
       <h2>Update Profile</h2>
       <form onSubmit={handleSubmit} className="form">
         <div className="form-group">
-          
           {/* NAME */}
-            <label htmlFor="name">Name</label>
-            <input
+          <label htmlFor="name">Name</label>
+          <input
             type="text"
             id="name"
             value={formData.name}
             onChange={handleInputChange}
             placeholder="New first name"
-            />
+          />
 
           {/* AGE */}
-            <label htmlFor="age">Age</label>
-            <input
+          <label htmlFor="age">Age</label>
+          <input
             type="number"
             min="13"
             max="100"
@@ -97,12 +94,12 @@ export default function UpdateProfile() {
             value={formData.age}
             onChange={handleInputChange}
             placeholder="How old are you?"
-            />
+          />
 
           {/* HEIGHT */}
-            <label htmlFor="height">Height</label>
-            <span className="height-span">
-              <input
+          <label htmlFor="height">Height</label>
+          <span className="height-span">
+            <input
               type="number"
               min="3"
               max="8"
@@ -110,8 +107,8 @@ export default function UpdateProfile() {
               value={formData.feet}
               onChange={handleInputChange}
               placeholder="feet"
-              />
-              <input
+            />
+            <input
               type="number"
               min="0"
               max="11"
@@ -119,12 +116,12 @@ export default function UpdateProfile() {
               value={formData.inches}
               onChange={handleInputChange}
               placeholder="inches"
-              />
-            </span>
+            />
+          </span>
 
           {/* WEIGHT */}
-            <label htmlFor="weight">Weight</label>
-            <input
+          <label htmlFor="weight">Weight</label>
+          <input
             type="number"
             min="75"
             max="800"
@@ -132,7 +129,7 @@ export default function UpdateProfile() {
             value={formData.weight}
             onChange={handleInputChange}
             placeholder="New weight"
-            />
+          />
 
           {/* EMAIL */}
           <label htmlFor="email">Email</label>
@@ -153,7 +150,6 @@ export default function UpdateProfile() {
             onChange={handleInputChange}
             placeholder="New password"
           />
-
         </div>
 
         <button type="submit" className="login-btn">
@@ -161,5 +157,5 @@ export default function UpdateProfile() {
         </button>
       </form>
     </div>
-    );
+  );
 }

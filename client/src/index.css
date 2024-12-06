@@ -3,261 +3,224 @@
 @tailwind utilities;
 
 :root {
-    --color: white;
-    --font-size: 30px;
-    --font-family: system-ui, "Varela Round", sans-sarif, "Segoe UI";
+  --color: white;
+  --font-size: 30px;
+  --font-family: system-ui, "Varela Round", sans-sarif, "Segoe UI";
 }
 #root > div {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 body {
-    background-image: url("./background-image.jpg");
-    background-color: rgb(42, 42, 42);
+  background-image: url("./background-image.jpg");
+  background-color: rgb(42, 42, 42);
 }
 nav {
-    color: darkred;
-    background-color: black;
-    font-family: var(--font-family);
-    font-size: var(--font-size);
-}
-nav a:last-child {
-    /* color: var(--color);
-    background-color: blue;
-    margin: 10px 20px 10px 20px;
-    padding: 10px 10px;
-    font-size: 20px;
-    border-radius: 12px; */
+  color: darkred;
+  background-color: black;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
 }
 nav a:last-child:hover {
-    background-color: rgb(52, 119, 235);
+  background-color: rgb(52, 119, 235);
 }
-/* a[href="/login"] {
-    text-align: right;
-    text-decoration: underline;
-    padding-top: 10px;
-} */
 .last {
-    text-align: right;
-    text-decoration: underline;
-    padding-top: 10px;
-    color: var(--color);
-    background-color: blue;
-    margin: 10px 20px 10px 20px;
-    padding: 10px 10px;
-    font-size: 20px;
-    border-radius: 12px;
+  text-align: right;
+  text-decoration: underline;
+  padding-top: 10px;
+  color: var(--color);
+  background-color: blue;
+  margin: 10px 20px 10px 20px;
+  padding: 10px 10px;
+  font-size: 20px;
+  border-radius: 12px;
 }
 .last-active {
-    
 }
 img {
-    height: 60px;
+  height: 60px;
 }
 .workout-body {
-    /* padding-left: 100px; */
-
-    font-family: var(--font-family);
-    /* max-width: 620px; */
-    /* margin: auto auto 20px auto; */
-    margin: auto 250px 20px 250px;
-    /* padding: 50px 50px; */
-    background-color: black;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-family);
+  margin: auto 250px 20px 250px;
+  background-color: black;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 .workout-body h2 {
-    margin-bottom: 10px;
-    color: var(--color);
-    font-size: var(--font-size);
+  margin-bottom: 10px;
+  color: var(--color);
+  font-size: var(--font-size);
 }
 .workout-body label {
-    margin-bottom: 10px;
-    color: var(--color);
-    font-size: var(--font-size);
-    cursor: pointer;
+  margin-bottom: 10px;
+  color: var(--color);
+  font-size: var(--font-size);
+  cursor: pointer;
 }
-.bench-header, .barbell-header, .squat-header, .overhead-header, .chinups-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
+.bench-header,
+.barbell-header,
+.squat-header,
+.overhead-header,
+.chinups-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
 }
 .btn {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
-/* .btn > button {
-    font-family: var(--font-family);
-    font-size: var(--font-size);
-    color: var(--color);
-    width: 100px;
-    margin: 20px 50px;
-    text-align: center;
-    line-height: 80px;
-    border-radius: 50%;
-} */
 .btn > button:hover {
-    background-color: rgb(247, 125, 125);
-    outline: 3px solid white;
+  background-color: rgb(247, 125, 125);
+  outline: 3px solid white;
 }
 h1 {
-    padding-left: 20px;
-    color: var(--color);
-    font-size: var(--font-size);
+  padding-left: 20px;
+  color: var(--color);
+  font-size: var(--font-size);
 }
 .stopwatch-time {
-    text-align: right;
-    color: var(--color);
-    font-size: var(--font-size);
+  text-align: right;
+  color: var(--color);
+  font-size: var(--font-size);
 }
 .footer {
-    color: var(--color);
-    background-color: black;
-    text-align: center;
-    padding: 10px;
-    margin-top: auto;
+  color: var(--color);
+  background-color: black;
+  text-align: center;
+  padding: 10px;
+  margin-top: auto;
 }
 .profile {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    background-color: grey;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    /* margin-top: 200px; */
-    margin-bottom: auto;
-    text-align: center;
-
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  background-color: grey;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  text-align: center;
 }
 h2 {
-    color: var(--color);
-    /* padding-right: 150px; */
+  color: var(--color);
 }
 /* Default button style (gray background) */
 .inactive-btn {
-    background-color: gray;
-    color: var(--color);
-    width: 100px;
-    height: 100px;
-    font-size: var(--font-size);
-    font-family: var(--font-family);
-    text-align: center;
-    margin: 20px 70px;
-    border: 2px solid #ccc;
-    border-radius: 50%;
-    cursor: pointer;
-    line-height: 80px;
-    transition: background-color 0.3s;
+  background-color: gray;
+  color: var(--color);
+  width: 100px;
+  height: 100px;
+  font-size: var(--font-size);
+  font-family: var(--font-family);
+  text-align: center;
+  margin: 20px 70px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  line-height: 80px;
+  transition: background-color 0.3s;
 }
 
 /* Active button style (red background) */
 .active-btn {
-    background-color: red;
-    color: var(--color);
-    width: 100px;
-    height: 100px;
-    font-size: var(--font-size);
-    font-family: var(--font-family);
-    text-align: center;
-    margin: 20px 70px;
-    border: 2px solid #ccc;
-    border-radius: 50%;
-    cursor: pointer;
-    line-height: 80px;
-    transition: background-color 0.3s;
+  background-color: red;
+  color: var(--color);
+  width: 100px;
+  height: 100px;
+  font-size: var(--font-size);
+  font-family: var(--font-family);
+  text-align: center;
+  margin: 20px 70px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  line-height: 80px;
+  transition: background-color 0.3s;
 }
-  
-  
-
-
-
-
-
 /* Container for the login form */
 .form-container {
-    font-family: var(--font-family);
-    max-width: 620px;
-    margin: auto auto 20px auto;
-    padding: 20px;
-    background-color: dimgray;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-family);
+  max-width: 620px;
+  margin: auto auto 20px auto;
+  padding: 20px;
+  background-color: dimgray;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .edit-workout-container {
-    font-family: var(--font-family);
-    max-width: 620px;
-    margin: auto auto 20px auto;
-    padding: 20px;
-    background-color: dimgray;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-family);
+  max-width: 620px;
+  margin: auto auto 20px auto;
+  padding: 20px;
+  background-color: dimgray;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .edit-workout-container h2 {
-    margin-bottom: 10px;
-    color: black;
-    font-size: var(--font-size);
+  margin-bottom: 10px;
+  color: black;
+  font-size: var(--font-size);
 }
-  
+
 /* Header style */
 .form-container h2 {
-    margin-bottom: 10px;
-    color: black;
-    font-size: var(--font-size);
+  margin-bottom: 10px;
+  color: black;
+  font-size: var(--font-size);
 }
-  
+
 /* Style for the form */
 .form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
-  
-/* Form group (label + input) */
+
 .form-group {
-margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 .form-group label {
-font-size: 16px;
+  font-size: 16px;
 }
 .form-group input {
-padding: 10px;
-font-size: 16px;
-border: 1px solid #ccc;
-border-radius: 4px;
-outline: none;
-width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  width: 100%;
 }
 .form-group input:focus {
-border-color: #007bff;
-box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 .error-message {
-color: red;
-font-size: 14px;
-margin-bottom: 15px;
-text-align: center;
+  color: red;
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-align: center;
 }
 .login-btn {
-padding: 12px;
-font-size: 16px;
-color: white;
-background-color: blue;
-border-radius: 4px;
-transition: background-color 0.3s;
+  padding: 12px;
+  font-size: 16px;
+  color: white;
+  background-color: blue;
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
 .login-btn:hover {
-background-color: rgb(52, 119, 235);
-}  
+  background-color: rgb(52, 119, 235);
+}
 a[href="/signup"] {
-    text-align: right;
-    color: blue;
-    text-decoration: underline;
-    padding-top: 10px;
+  text-align: right;
+  color: blue;
+  text-decoration: underline;
+  padding-top: 10px;
 }
 
-
 .height-span {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
